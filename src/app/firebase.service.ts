@@ -11,46 +11,47 @@ import { environment } from '../environments/environment';
 export class FirebaseService {
 
   db: Firestore;
-  studentCol: CollectionReference<DocumentData>;
+  itemCol: CollectionReference<DocumentData>;
   private updatedSnapshot = new Subject<QuerySnapshot<DocumentData>>();
   obsr_UpdatedSnapshot = this.updatedSnapshot.asObservable();
 
   constructor() {
     initializeApp(environment.firebaseConfig);
     this.db = getFirestore();
-    this.studentCol = collection(this.db, 'student');
+    this.itemCol = collection(this.db, 'item');
 
     // Get Realtime Data
-    onSnapshot(this.studentCol, (snapshot) => {
+    onSnapshot(this.itemCol, (snapshot) => {
       this.updatedSnapshot.next(snapshot);
     }, (err) => {
       console.log(err);
     })
   }
 
-  async getStudents() {
-    const snapshot = await getDocs(this.studentCol);
+  async getitems() {
+    const snapshot = await getDocs(this.itemCol);
     return snapshot;
   }
 
 
-  async addStudent(name: string, age: string) {
-    await addDoc(this.studentCol, {
+  async additem(name: string, description: string, price: string) {
+    await addDoc(this.itemCol, {
       name,
-      age
+      description,
+      price
     })
     return;
   }
 
-  async deleteStudent(docId: string) {
-    const docRef = doc(this.db, 'student', docId)
+  async deleteitem(docId: string) {
+    const docRef = doc(this.db, 'item', docId)
     await deleteDoc(docRef);
     return;
   }
 
-  async updateStudent(docId: string, name: string, age: string) {
-    const docRef = doc(this.db, 'student', docId);
-    await updateDoc(docRef, { name, age })
+  async updateitem(docId: string, name: string, description: string, price: string) {
+    const docRef = doc(this.db, 'item', docId);
+    await updateDoc(docRef, { name, description, price })
     return;
   }
 }

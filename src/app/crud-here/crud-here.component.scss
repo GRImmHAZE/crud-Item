@@ -1,0 +1,62 @@
+.card-container {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* Center vertically */
+    align-items: center;
+    /* Center horizontally */
+    background-color: #fff;
+}
+
+mat-card-content {
+    width: -webkit-fill-available;
+}
+
+.add {
+    width: 100%;
+
+    .mat-form-field {
+        width: 100%;
+    }
+
+    button[type="submit"] {
+        width: 100%;
+    }
+}
+
+.mat-mdc-form-field {
+    width: 100%;
+}
+
+.student-table {
+    width: 100%;
+
+    th,
+    td {
+        padding: 8px;
+        text-align: center;
+    }
+
+    .mat-header-cell,
+    .mat-cell {
+        font-weight: bold;
+    }
+
+    .mat-cell {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    button.mat-icon-button {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+    }
+}
